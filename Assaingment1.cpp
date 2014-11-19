@@ -39,7 +39,17 @@ typedef unsigned long long int64u;
 //{
 //Intput_Output
 #define gc getchar
-template<class T>inline bool read(T &x){int c=gc();int sgn=1;while(~c&&c<'0'|c>'9'){if(c=='-')sgn=-1;c=gc();}for(x=0;~c&&'0'<=c&&c<='9';c=gc())x=x*10+c-'0';x*=sgn;return ~c;}
+template<class T>inline bool read(T &x) {
+    int c=gc();
+    int sgn=1;
+    while(~c&&c<'0'|c>'9') {
+        if(c=='-')sgn=-1;
+        c=gc();
+    }
+    for(x=0; ~c&&'0'<=c&&c<='9'; c=gc())x=x*10+c-'0';
+    x*=sgn;
+    return ~c;
+}
 #define II ({ int a; read(a); a;})
 #define IL ({ int64 a; read(a);  a;})
 #define ID ({ db a; scanf("%lf",&a);  a;})
@@ -49,17 +59,19 @@ template<class T>inline bool read(T &x){int c=gc();int sgn=1;while(~c&&c<'0'|c>'
 //}
 //}
 #define __(args...) {dbg,args; cerr<<endl;}
-struct debugger{template<typename T> debugger& operator , (const T& v){cerr<<v<<"    "; return *this; }}dbg;
-template <class T, class U> inline T max (T &a, U &b)
-{
+struct debugger {
+    template<typename T> debugger& operator , (const T& v) {
+        cerr<<v<<"    ";
+        return *this;
+    }
+} dbg;
+template <class T, class U> inline T max (T &a, U &b) {
     return a > b ? a : b;
 }
-template <class T, class U> inline T min (T &a, U &b)
-{
+template <class T, class U> inline T min (T &a, U &b) {
     return a < b ? a : b;
 }
-template <class T, class U> inline T swap (T &a, U &b)
-{
+template <class T, class U> inline T swap (T &a, U &b) {
     T tmp = a;
     a = b;
     b = tmp;
@@ -80,30 +92,31 @@ int EQ(double d) {
 char pattern[] = "#include<";
 string st = "C:\\Program Files\\CodeBlocks-EP\\MinGW\\include\\";
 
-void call(string s,FILE *out){
+void call(string s,FILE *out) {
     FILE *head ;
     head = fopen(s.c_str(),"r");
     char ch ;
-    while((ch=getc(head))!=EOF){
-        if(ch == '/'){
+    while((ch=getc(head))!=EOF) {
+        if(ch == '/') {
             char tmp = getc(head);
-            if(tmp == '/'){
-                while((ch=getc(head))!=EOF){
-                    if(ch=='\n') {break;}
+            if(tmp == '/') {
+                while((ch=getc(head))!=EOF) {
+                    if(ch=='\n') {
+                        break;
+                    }
                 }
                 putc('\n',out);
-            }else if(tmp == '*'){
+            } else if(tmp == '*') {
                 tmp = getc(head);
-                while((ch=getc(head))!=EOF){
+                while((ch=getc(head))!=EOF) {
                     if(ch == '/' && tmp == '*') break;
                     tmp = ch;
                 }
-            }
-            else{
+            } else {
                 putc(ch,out);
                 putc(tmp,out);
             }
-        }else putc(ch,out);
+        } else putc(ch,out);
     }
     fclose(head);
 }
@@ -115,41 +128,42 @@ int main() {
     // freopen ("output.txt", "w", stdout);
 #endif
     FILE *in,*out;
-    in = fopen("in.txt","r");
-    out = fopen("out.txt","w");
+    in = fopen("code.c","r");
+    out = fopen("reCode.c","w");
     char ch;
     int cnt = 0;
-    while((ch=getc(in))!=EOF){
-        if(ch == pattern[cnt]){
+    while((ch=getc(in))!=EOF) {
+        if(ch == pattern[cnt]) {
             cnt++;
-        }else{
-            for(int i = 0;i<cnt;i++){
+        } else {
+            for(int i = 0; i<cnt; i++) {
                 putc(pattern[i],out);
             }
             cnt = 0;
-            if(ch == '/'){
-            char tmp = getc(in);
-            if(tmp == '/'){
-                while((ch=getc(in))!=EOF){
-                    if(ch=='\n') {break;}
+            if(ch == '/') {
+                char tmp = getc(in);
+                if(tmp == '/') {
+                    while((ch=getc(in))!=EOF) {
+                        if(ch=='\n') {
+                            break;
+                        }
+                    }
+                    putc('\n',out);
+                } else if(tmp == '*') {
+                    tmp = getc(in);
+                    while((ch=getc(in))!=EOF) {
+                        if(ch == '/' && tmp == '*') break;
+                        tmp = ch;
+                    }
+                } else {
+                    putc(ch,out);
+                    putc(tmp,out);
                 }
-                putc('\n',out);
-            }else if(tmp == '*'){
-                tmp = getc(in);
-                while((ch=getc(in))!=EOF){
-                    if(ch == '/' && tmp == '*') break;
-                    tmp = ch;
-                }
-            }
-            else{
-                putc(ch,out);
-                putc(tmp,out);
-            }
-        }else putc(ch,out);
+            } else putc(ch,out);
         }
-        if(cnt == 9){
+        if(cnt == 9) {
             string s = st;
-            while((ch=getc(in))!=EOF){
+            while((ch=getc(in))!=EOF) {
                 if(ch == '>') break;
                 s += ch;
             }
