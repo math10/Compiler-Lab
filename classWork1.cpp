@@ -105,9 +105,10 @@ int main() {
             }else if(tmp == '*'){
                 int cnt = 0;
                 int tmpLine = line;
-                while((ch=getc(in))!=EOF && (tmp=getc(in))!=EOF){
-                    if(ch == '\n' || tmp == '\n') line++;
-                    if(ch == '*' && tmp == '/') break;
+                tmp = getc(in);
+                while((ch=getc(in))!=EOF){
+                    if(ch == '/' && tmp == '*') break;
+                    tmp = ch;
                     cnt+=2;
                 }
                 fprintf(log,"ML\t%d\t%d\n",tmpLine,cnt);
