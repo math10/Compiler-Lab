@@ -86,7 +86,6 @@ int main() {
     FILE *in,*out,*log;
     in = fopen("code.c","r");
     out = fopen("reCode.c","w");
-    log = fopen("log.txt","w");
     char ch;
     int line = 1;
     while((ch=getc(in))!=EOF){
@@ -119,5 +118,6 @@ int main() {
             }
         }else putc(ch,out);
     }
+    fclose(in);fclose(out);fclose(log);
 
 }
