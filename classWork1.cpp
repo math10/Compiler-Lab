@@ -106,11 +106,11 @@ int main() {
                 int cnt = 0;
                 int tmpLine = line;
                 tmp = getc(in);
-                while((ch=getc(in))!=EOF){
+                while((ch=getc(in))!=EOF) {
                     if(ch == '/' && tmp == '*') break;
                     tmp = ch;
-                    cnt+=2;
                 }
+
                 fprintf(log,"ML\t%d\t%d\n",tmpLine,cnt);
             }
             else{
