@@ -245,7 +245,13 @@ int main() {
     char ch,pre = '\n';
     line = 1;
     while((ch = getc(in))!=EOF) {
-        if(ch == '/') {
+        if(ch == '\''){
+            while((ch=getc(in))&&ch!='\'');
+        }
+        else if(ch == '"'){
+            while((ch=getc(in))&&ch!='"');
+        }
+        else if(ch == '/') {
             char tmp = getc(in);
             if(tmp == '/') {
                 int cnt = 0;
@@ -300,7 +306,13 @@ int main() {
     pre = '\n';
     line = 1;
     while((ch = getc(in))!=EOF) {
-        if(ch == '/') {
+        if(ch == '\''){
+            while((ch=getc(in))&&ch!='\'');
+        }
+        else if(ch == '"'){
+            while((ch=getc(in))&&ch!='"');
+        }
+        else if(ch == '/') {
             char tmp = getc(in);
             if(tmp == '/') {
                 int cnt = 0;
