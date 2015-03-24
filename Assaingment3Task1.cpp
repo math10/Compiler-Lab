@@ -8,11 +8,18 @@ bool check(){
     if(!len) return 1;
 
     bool flag = (ch[0] == '1');
-    for(int i = 0;i < len;i++){
+    int tmp = len/2;
+    for(int i = 0;i < tmp;i++){
         bool f = (ch[i] == '1');
         if(flag != f) return 0;
-        flag = !flag;
     }
+
+    flag = !flag;
+    for(int i = tmp;i < len;i++){
+        bool f = (ch[i] == '1');
+        if(flag != f) return 0;
+    }
+
     return  !(len%2);
 }
 
