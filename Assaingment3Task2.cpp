@@ -96,6 +96,8 @@ int GetOperatorWeight(char op) {
         return 2;
     case '/':
         return 3;
+    case '^':
+        return 4;
     default:
         flag = 0;
         return -1;
